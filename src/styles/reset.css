@@ -1,0 +1,103 @@
+body {
+    Margin: 0;
+    padding: 0;
+    min-width: 100%;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+table,
+td {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+}
+
+table {
+    Margin: 0 auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+    table table table {
+        table-layout: auto;
+    }
+
+td,
+p {
+    padding: 0;
+}
+
+img {
+    border: 0;
+    max-width: 100%;
+    -ms-interpolation-mode: bicubic;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+.ExternalClass,
+.ReadMsgBody {
+    width:100%;
+}
+
+.ExternalClass,
+.ExternalClass p,
+.ExternalClass span,
+.ExternalClass font,
+.ExternalClass td,
+.ExternalClass div{
+    line-height: 100%;
+}
+
+#outlook a {
+    padding:0;
+}
+
+/* Centers email on Android 4.4 */
+div[style*="margin: 16px 0"] {
+    margin: 0 !important;
+}
+
+/* A work-around for email clients meddling in triggered links. */
+*[x-apple-data-detectors],  /* iOS */
+.x-gmail-data-detectors,    /* Gmail */
+.x-gmail-data-detectors *,
+.aBn {
+    border-bottom: 0 !important;
+    cursor: default !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Prevents Gmail from displaying an download button on large, non-linked images. */
+.a6S {
+    display: none !important;
+    opacity: 0.01 !important;
+}
+/* If the above doesn't work, add a .g-img class to any image in question. */
+img.g-img + div {
+    display:none !important;
+}
+
+/* Prevents underlining the button text in Windows 10 */
+.button-link {
+    text-decoration: none !important;
+}
+
+/* Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+/* Create one of these media queries for each additional viewport size you'd like to fix */
+/* Thanks to Eric Lepetit (@ericlepetitsf) for help troubleshooting */
+@media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+    .content {
+        min-width: 375px !important;
+    }
+}

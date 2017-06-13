@@ -1,0 +1,137 @@
+mixin table()
+	table(
+		border="0"
+		cellpadding="0"
+		cellspacing="0"
+		style="Margin: 0; padding: 0; border-collapse: collapse"
+	)&attributes(attributes)
+		tbody
+			block
+
+
+mixin fulltable()
+	+table(width="100%", style="width: 100%")&attributes(attributes)
+		block
+
+
+mixin image()
+	- var attrs = attributes;
+	img(
+		src=attrs.src,
+		alt=attrs.alt,
+		width=attrs.width,
+		height=attrs.height
+		border="0"
+		style="display: block; vertical-align: top; width: 100%; height: auto; border: 0"
+	)
+
+
+//-
+	Outlook condition render
+	example:
+		+mso("if gte mso 9")
+			<table width="600" border="0" cellspacing="0" cellpadding="0"><tr><td>
+mixin mso(condition)
+	| <!--[!{condition}]>
+	block
+	| <![endif]-->
+
+mixin notmso(condition)
+	| <!--[if !!{condition}]><!-->
+	block
+	| <!--<![endif]-->
+
+
+mixin whitespace(count)
+	- var n = count;
+	while n > 0
+		- n--;
+		| &nbsp;
+
+
+mixin spacer(size)
+	+table()&attributes(attributes)
+		tr
+			td(
+				height=`${size}px`
+				style=`height: ${size}px; line-height: ${size}px; font-size: ${size}px;`
+			) &#xA0;
+
+mixin wrapper(width)
+	center.wrapper(style=`max-width: ${width}px`)
+		.webkit(style=`max-width: ${width}px`)
+			+mso("if gte mso 9")
+				<table width="!{width}" border="0" cellspacing="0" cellpadding="0" style="Margin: 0; padding: 0; border-collapse: collapse; width: !{width}px"><tr><td>
+
+			+table(width="100%").content
+				tr
+					td
+						block content
+
+			+mso("if gte mso 9")
+
+
+mixin preheader(invisible)
+	.preheader
+		block
+
+
+mixin btn()
+	-
+		var {
+			href,
+			outerStyles,
+			innerStyles,
+			textStyles
+		} = attributes;
+	+table(align="center", style="width: auto; Margin-left: auto; Margin-right: auto;")
+		tr
+			td(align="center", valign="middle")
+				a(href=href, style=outerStyles)
+					+table(align="center", style="width: auto; Margin-left: auto; Margin-right: auto;")
+						tr
+							td(style=innerStyles)
+								span(style=textStyles)
+									block
+
+
+//-
+	adaptive grid
+	parametrs:
+		dir
+		align
+//- wrapper
+mixin agrid()
+	-
+		var dir = attributes.dir || "ltr";
+		var align = attributes.align || "center";
+	+table(width="100%", dir=dir)
+		tr
+			td(align="center", valign="top" style=`text-align: ${align}; font-size: 0`)
+				+mso("if (gte mso 9)|(IE)")
+					<table dir="!{dir}" border="0" cellpadding="0" cellspacing="0" style="margin: 0; padding: 0; border-collapse: collapse" width="100%">
+				block
+				+mso("if (gte mso 9)|(IE)")
+					</table>
+
+//- row
+mixin arow()
+	+mso("if (gte mso 9)|(IE)")
+		<tr>
+	block
+	+mso("if (gte mso 9)|(IE)")
+		</tr>
+
+//- cell
+mixin acell()
+	-
+		var { width, fallbackWidth, align, valign } = attributes;
+		var align = align || "left";
+		var valign = valign || "top";
+	+mso("if (gte mso 9)|(IE)")
+		<td width="!{fallbackWidth || width}" valign="!{valign}" align="!{align}">
+	.column(
+		dir="ltr", style=`max-width: ${width}; vertical-align: ${valign}; text-align: ${align}`)
+		block
+	+mso("if (gte mso 9)|(IE)")
+		</td>

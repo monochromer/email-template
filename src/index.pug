@@ -1,0 +1,139 @@
+extends layouts/main-layout
+
+block append defs
+	-
+		title = "";
+		bgcolor = "#f2f2f2";
+		mainWidth = 600;
+		lang = "ru";
+
+//- fonts
+block append styles
+	+notmso("mso")
+		link(
+			rel="stylesheet",
+			type="text/css",
+			href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic,500,500italic,600,600italic,700,700italic",
+			data-embed-ignore
+		)
+block append styles
+	+mso("if mso").
+		<style type="text/css" data-embed>
+			td {
+				font-family: Arial, sans-serif !important;
+				letter-spacing: normal !important;
+			}
+		</style>
+
+block content
+
+	+preheader()
+		| Some preheader text. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+	+fulltable()
+		tr
+			td(align="center", valign="top")
+				+image(width="600", height="200", src="http://via.placeholder.com/600x200?text=Image+Placehoder")
+
+	+fulltable()
+		tr
+			td.inner
+				p(style="Margin: 0 0 0.5em").type-title
+					| Lorem ipsum dolor.
+				p(style="Margin: 0.5em 0").type-body-1
+					|  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse debitis ut laudantium quidem dolorum perferendis voluptate, numquam nisi sed id voluptatum ex, eum commodi aliquam, doloribus, in earum ipsum. Repellendus.
+
+	+agrid(dir="rtl", align="center")
+		+arow()
+			+acell(width="300px", fallbackWidth="50%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="268", height="120", src="http://via.placeholder.com/268x120?text=1")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolores iure laudantium sapiente.
+			+acell(width="300px", fallbackWidth="50%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="268", height="120", src="http://via.placeholder.com/268x120?text=2")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dolores iure laudantium sapiente.
+
+	+agrid(align="center")
+		+arow()
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=1")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor sit amet.
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=2")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor sit amet, consectetur.
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=3")
+					tr
+						td(style="padding-bottom: 0").inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor.
+		+arow()
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=4")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor sit amet.
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=5")
+					tr
+						td.inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor sit amet, consectetur.
+			+acell(width="200px", fallbackWidth="33%")
+				+fulltable()
+					tr
+						td(style="padding-bottom: 0;").inner
+							+image(width="168", height="120", src="http://via.placeholder.com/168x120?text=6")
+					tr
+						td(style="padding-bottom: 0").inner
+							div.type-body-1.image-text
+								| Lorem ipsum dolor.
+
+	+fulltable()
+		tr
+			td(align="center", valign="middle", style="padding: 24px 8px 32px")
+				+btn(href="#404", outerStyles="display: inline-block; vertical-align: top; text-decoration: none; color: #ffffff", innerStyles="padding: 11px 16px; border-radius: 2px; background-color: #212121; color: #ffffff", textStyles="font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;")
+					| Some button example
+
+	//- +fulltable()
+	//- 	tr
+	//- 		td(align="center", valign="middle", style="text-align-center; color: #9e9e9e").inner.type-caption
+	//- 			span.type-caption You received this email because you... subscribe
+	//- 			+whitespace(2)
+	//- 			||
+	//- 			+whitespace(2)
+	//- 			a(style="color: #2196f3;").type-caption
+	//- 				span(style="color: #2196f3;").type-caption Unsubscribe

@@ -1,0 +1,23 @@
+{
+  "name": "email-builder",
+  "version": "0.0.1",
+  "description": "template for emails",
+  "author": "monochromer <monochromer@mail.ru>",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "clean": "rm -rf build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gh-pages": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.3.0",
+    "gulp-email-builder": "^3.0.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-newer": "^1.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.3.0"
+  }
+}
