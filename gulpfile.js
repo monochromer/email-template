@@ -60,11 +60,11 @@ gulp.task('images', function() {
 
 
 gulp.task('watch', function(done) {
-    gulp.watch('src/**/*.*', ['template']);
-    gulp.watch('src/images/**/*.*', ['images']);
+    gulp.watch('src/**/*.*', gulp.series('template'));
+    gulp.watch('src/images/**/*.*', gulp.series('images'));
     done();
 });
 
 
-gulp.task('build', ['images', 'template']);
-gulp.task('default', ['build', 'watch', 'server']);
+gulp.task('build', gulp.series('images', 'template'));
+gulp.task('default', gulp.series('build', 'watch', 'server'));
