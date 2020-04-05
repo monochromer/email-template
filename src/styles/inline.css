@@ -27,13 +27,17 @@ body {
 }
 
 .preheader {
-    display: none;
+/*     display: none;
     max-width: 0px;
     max-height: 0px;
     overflow: hidden;
     opacity: 0;
     font-size: 1px;
     line-height: 1px;
+    mso-hide: all; */
+    
+    max-height: 0;
+    overflow: hidden;
     mso-hide: all;
 }
 
