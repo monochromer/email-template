@@ -9,16 +9,18 @@ block defs
 		var mainWidth = mainWidth || 600;
 		var lang = lang || "ru";
 
-doctype html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+doctype html
 html(xmlns="http://www.w3.org/1999/xhtml", xmlns:v="urn:schemas-microsoft-com:vml", xmlns:o="urn:schemas-microsoft-com:office:office", lang=lang)
 	head
+		meta(charset="utf-8")
 		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
-		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
 		//- Disable auto-scale in iOS 10 Mail entirely
 		meta(name="x-apple-disable-message-reformatting")
-		meta(name="format-detection" content="telephone=no")
-		meta(name="format-detection" content="address=no")
+		meta(name="format-detection", content="telephone=no, date=no, address=no, email=no")
+		meta(name="color-scheme", content="light dark")
+		meta(name="supported-color-schemes", content="light dark")
 		title #{title}
 		block styles
 			style(type="text/css", data-embed)
@@ -31,13 +33,18 @@ html(xmlns="http://www.w3.org/1999/xhtml", xmlns:v="urn:schemas-microsoft-com:vm
 				include ../styles/inline.css
 
 			style(type="text/css").
+				:root {
+			          color-scheme: light dark;
+			          supported-color-schemes: light dark;
+				}
+
 				.webkit,
 				.content {
 					width: 100%;
 					max-width: !{mainWidth}px;
 				}
 		//- Makes background images in 72ppi Outlook render at correct size
-		+mso("if gte mso 9")
+		+mso("if mso")
 			<xml>
 				<o:OfficeDocumentSettings>
 					<o:AllowPNG/>
@@ -46,31 +53,32 @@ html(xmlns="http://www.w3.org/1999/xhtml", xmlns:v="urn:schemas-microsoft-com:vm
 			</xml>
 
 
-	body(bgcolor=bgcolor, yahoo="fix")
-		+table(width="100%")
-			tr
-				td(align="center", valign="top", bgcolor=bgcolor)
-					center.wrapper(style=`max-width: ${mainWidth}px`)
-						.webkit(style=`max-width: ${mainWidth}px`)
-							+mso("if gte mso 9")
-								<table width="!{mainWidth}" border="0" cellspacing="0" cellpadding="0" style="Margin: 0; padding: 0; border-collapse: collapse; width: !{mainWidth}px"><tr><td>
+	body(bgcolor=bgcolor, yahoo="fix").body
+		div(role="article", aria-roledescription="email", aria-label=`${title}` lang=lang style="font-size:1rem")
+			+table(width="100%")
+				tr
+					td(align="center", valign="top", bgcolor=bgcolor)
+						center.wrapper(style=`max-width: ${mainWidth}px`)
+							.webkit(style=`max-width: ${mainWidth}px`)
+								+mso("if gte mso 9")
+									<table width="!{mainWidth}" border="0" cellspacing="0" cellpadding="0" style="Margin: 0; padding: 0; border-collapse: collapse; width: !{mainWidth}px"><tr><td>
 
-							+table(width="100%").content
-								tr
-									td
-										block content
+								+table(width="100%").content
+									tr
+										td
+											block content
 
-							+mso("if gte mso 9")
-								</td></tr></table>
+								+mso("if gte mso 9")
+									</td></tr></table>
 
-					+fulltable()
-						tr
-							td(align="center", valign="middle", style="padding: 0 16px; text-align-center; color: #9e9e9e").type-caption
-								+spacer(16)
-								span.type-caption You received this email because you... subscribe
-								+whitespace(2)
-								||
-								+whitespace(2)
-								a(href="#404", style="color: #2196f3;").type-caption
-									span(style="color: #2196f3;").type-caption Unsubscribe
-								+spacer(16)
+						+fulltable()
+							tr
+								td(align="center", valign="middle", style="padding: 0 16px; text-align-center; color: #9e9e9e").type-caption
+									+spacer(16)
+									span.type-caption You received this email because you... subscribe
+									+whitespace(2)
+									||
+									+whitespace(2)
+									a(href="#404", style="color: #2196f3;").type-caption
+										span(style="color: #2196f3;").type-caption Unsubscribe
+									+spacer(16)
